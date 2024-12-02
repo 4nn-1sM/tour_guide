@@ -10,8 +10,7 @@ COPY app.py /app
 # lo suyo, para no liarla es poner también las versiones que se necesitan de cada librería. 
 # comprobar en terminal con pip freeze y escribir como aparece ahí (ej. numpy==1.23.5). 
 #Si no lo indicamos, descargará la última versión
-COPY requirements.txt /app/
-COPY home.html /app
+COPY . /app/
 RUN pip install --no-cache-dir -r requirements.txt
 # Exponer el puerto en el que la aplicación está corriendo en el contenedor
 EXPOSE 8000

@@ -3,103 +3,182 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>City Explorer</title>
+    <title>Descubre Rincones que Cuentan Historias</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
-            background-color: #ffcccc; /* Tonos rojos suaves */
-            font-family: Arial, sans-serif;
-            color: #333;
-            margin: 0;
-            padding: 0;
+            background-image: url('/static/fondo_map.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            font-family: 'Poppins', sans-serif;
+            color: #ffffff;
         }
-        header {
-            background-color: #e60000; /* Rojo fuerte */
-            color: white;
-            padding: 10px 20px;
+
+        .hero-text {
             text-align: center;
+            margin-bottom: 20px;
         }
-        main {
-            padding: 20px;
-            text-align: center;
+
+        .hero-text h1 {
+            font-size: 36px;
+            font-weight: bold;
+            color: #ffffff;
         }
-        .map-container {
-            margin: 20px auto;
-            max-width: 800px;
+
+        .hero-text p {
+            font-size: 18px;
+            color: #d1d5db;
         }
-        .map-container img {
-            width: 100%;
-            border: 5px solid #e60000;
-            border-radius: 10px;
+
+        #result {
+            transition: all 0.3s ease-in-out;
         }
-        form {
-            margin-top: 20px;
+
+        .result-card {
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 0.5s ease-in-out;
         }
-        input[type="text"] {
-            padding: 10px;
-            width: 70%;
-            border: 2px solid #e60000;
-            border-radius: 5px;
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        button {
-            padding: 10px 20px;
-            background-color: #e60000;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-        button:hover {
-            background-color: #cc0000;
-        }
+
         footer {
-            background-color: #e60000;
-            color: white;
+            margin-top: 50px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.6);
+            color: #ffffff;
             text-align: center;
-            padding: 10px;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
+            font-size: 14px;
+        }
+
+        footer a {
+            color: #ff7878;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
-<body>
-    <header>
-        <h1>City Explorer</h1>
-        <p>Descubre lugares únicos y secretos mejor guardados de tu ciudad</p>
-    </header>
-    <main>
-        <div class="map-container">
-            <img src="https://via.placeholder.com/800x400?text=Mapa+de+la+Ciudad" alt="Mapa de la Ciudad">
+<body class="min-h-screen flex flex-col items-center justify-center text-black bg-opacity-80 bg-gradient-to-t from-gray-800 to-gray-600">
+
+    <!-- Hero Text -->
+    <div class="hero-text">
+        <h1>Descubre Rincones que Cuentan Historias</h1>
+        <p>Explora secretos únicos de cada ciudad, contados como nunca antes.</p>
+    </div>
+
+    <!-- Contenedor principal -->
+    <div class="bg-opacity-90 backdrop-blur-lg bg-white p-8 rounded-lg shadow-lg w-11/12 md:w-1/2 lg:w-1/3">
+        <!-- Campo de texto para la query -->
+        <div class="mb-4">
+            <label for="place" class="block text-lg font-semibold text-black mb-2">Explora una Ciudad:</label>
+            <input type="text" id="place" name="place" class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring focus:ring-red-400 text-black" placeholder="e.g., Vienna">
         </div>
-        <form id="explorer-form">
-            <input type="text" id="place" name="place" placeholder="Ingresa el nombre de la ciudad" required>
-            <button type="submit">Explorar</button>
-        </form>
-    </main>
+
+        <!-- Botón para enviar -->
+        <div class="mb-6">
+            <button id="get-recommendations" class="w-full p-3 rounded-lg bg-red-800 hover:bg-red-700 text-white font-semibold text-lg transition">
+                Descubrir
+            </button>
+        </div>
+
+        <!-- Contenedor de resultados -->
+        <div id="result" class="hidden">
+            <div id="cards-container"></div>
+        </div>
+
+        <!-- Botón para ver respuestas guardadas -->
+        <div class="flex justify-start mt-4">
+            <button id="view-history" class="p-2 rounded-lg bg-red-800 hover:bg-red-700 text-white font-semibold text-sm transition">
+                Ver Historial
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2024 City Explorer. Todos los derechos reservados.</p>
+        <p>© 2024 Descubre Rincones que Cuentan Historias</p>
+        <a href="#">Sobre nosotros</a> | <a href="#">Contacto</a> | <a href="#">Política de privacidad</a>
     </footer>
+
     <script>
-        const form = document.querySelector('#explorer-form');
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const place = document.getElementById('place').value;
-            const response = await fetch('/generate-response/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ place })
-            });
-            const result = await response.json();
-            console.log(result);
-            if (result.response) {
-                alert(`Recomendaciones: ${result.response}`);
-            } else {
-                alert('Hubo un error procesando tu solicitud.');
+        const BASE_URL = "http://127.0.0.1:8000";
+
+        document.getElementById("get-recommendations").addEventListener("click", async () => {
+            const place = document.getElementById("place").value.trim();
+            const resultDiv = document.getElementById("result");
+            const cardsContainer = document.getElementById("cards-container");
+
+            if (!place) {
+                resultDiv.classList.remove("hidden");
+                cardsContainer.innerHTML = "<p class='text-black'>Por favor, escribe el nombre de una ciudad.</p>";
+                return;
+            }
+
+            try {
+                const response = await fetch(`${BASE_URL}/generate-response/`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ place }),
+                });
+
+                if (!response.ok) throw new Error("Error al obtener recomendaciones.");
+
+                const data = await response.json();
+                resultDiv.classList.remove("hidden");
+                cardsContainer.innerHTML = `
+                    <div class="result-card">
+                        <h3 class="text-lg font-bold">${place}</h3>
+                        <p>${data.response}</p>
+                    </div>
+                `;
+            } catch (error) {
+                resultDiv.classList.remove("hidden");
+                cardsContainer.innerHTML = `<p class="text-red-600">Error: ${error.message}</p>`;
+            }
+        });
+
+        document.getElementById("view-history").addEventListener("click", async () => {
+            const resultDiv = document.getElementById("result");
+            const cardsContainer = document.getElementById("cards-container");
+
+            try {
+                const response = await fetch(`${BASE_URL}/search-history/`, { method: "GET" });
+
+                if (!response.ok) throw new Error("Error al obtener el historial.");
+
+                const data = await response.json();
+                resultDiv.classList.remove("hidden");
+                cardsContainer.innerHTML = data.search_history
+                    .map(entry => `
+                        <div class="result-card">
+                            <h3 class="text-lg font-bold">${entry.place}</h3>
+                            <p>${entry.ai_response}</p>
+                        </div>
+                    `).join("");
+            } catch (error) {
+                resultDiv.classList.remove("hidden");
+                cardsContainer.innerHTML = `<p class="text-red-600">Error: ${error.message}</p>`;
             }
         });
     </script>
+
 </body>
 </html>

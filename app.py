@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException, Form
+from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 import pymysql
 from huggingface_hub import InferenceClient
@@ -9,6 +10,9 @@ from langchain.prompts import PromptTemplate
 from fastapi.responses import HTMLResponse
 from dotenv import load_dotenv
 import os
+from fastapi.staticfiles import StaticFiles
+
+
 
 # Cargar las variables desde el archivo .env
 load_dotenv()
@@ -24,6 +28,8 @@ print(f"DB_PORT from os.getenv: {type(os.getenv('DB_PORT'))}")
 client = InferenceClient(api_key=huggingface_api_key)
 app = FastAPI()
 
+# Para hacer estática la imagen
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
 # Conexión a MySQL
 conn = pymysql.connect(
@@ -104,9 +110,9 @@ def serve_home():
 
     
 
-@app.post("/generate-response/", response_class=HTMLResponse)
-async def generate_response(place: str):
-    print("place received:", place)
+@app.post("/generate-response/", response_class=JSONResponse)
+async def generate_response(request: ResponseRequest):  # Cambiar el argumento a `request`
+    place = request.place  # Extraer el lugar desde el JSON
     if not place.strip():
         raise HTTPException(status_code=400, detail="El lugar no puede estar vacío.")
 
@@ -150,10 +156,7 @@ async def generate_response(place: str):
         """
 
 
-        PROMPT = PromptTemplate(
-            template = prompt_template, 
-            input_variables = ["location"]
-        )
+        PROMPT = PromptTemplate(template = prompt_template, input_variables = ["location"])
         print(PROMPT)
 
         #Creamos variable de prompt formateada con el lugar y extraemos a otra variable la parte perteneciente al usuario
