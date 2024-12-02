@@ -1,11 +1,11 @@
 fastapi
 uvicorn
-scikit-learn
 pandas
 numpy
 pydantic
 pymysql
 huggingface_hub
-python-dotenv==1.0.0
+python-dotenv
 langchain
 langchain_huggingface
+cryptography

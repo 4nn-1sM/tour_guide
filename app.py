@@ -22,8 +22,9 @@ huggingface_api_key = os.getenv("HUGGINGFACE_API_KEY")
 username = os.getenv("DB_USERNAME")
 password = os.getenv("DB_PASSWORD")
 host = os.getenv("DB_HOST")
-port = int(os.getenv("DB_PORT"))
-print(f"DB_PORT from os.getenv: {type(os.getenv('DB_PORT'))}")
+port = int(os.getenv("DB_PORT", 3306))
+database = os.getenv("DB_NAME")
+
 #Key de huggingface
 client = InferenceClient(api_key=huggingface_api_key)
 app = FastAPI()
@@ -199,5 +200,5 @@ async def get_search_history():
 
 
 
-if __name__ == "__main__":
-    uvicorn.run(app, host="127.0.0.1", port=8000)
+# if __name__ == "__main__":
+#     uvicorn.run(app, host="127.0.0.1", port=8000)
