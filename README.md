@@ -49,7 +49,7 @@ pip install -r requirements.txt
 \`\`\`bash
 uvicorn app:app --reload
 \`\`\`
-Accede a la app en tu navegador en [http://127.0.0.1:8000](http://127.0.0.1:8000).
+Accede a la app en tu navegador en [http://localhost:8000](http://localhost:8000).
 
 ---
 
@@ -59,10 +59,6 @@ Accede a la app en tu navegador en [http://127.0.0.1:8000](http://127.0.0.1:8000
 **Madrid**  
 _Bienvenido a Madrid, la vibrante capital de España, donde cada calle, plaza y esquina tiene su propia historia para contar..._
 
-### **Pantalla Principal**
-![Pantalla Principal](https://via.placeholder.com/800x400.png?text=Captura+de+Pantalla+1)
-
----
 
 ## 🧪 **Pruebas**
 Este proyecto incluye una suite de tests básicos para asegurar su funcionalidad.  
