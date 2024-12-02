@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+scikit-learn
+pandas
+numpy
+pydantic
+pymysql
+huggingface_hub
+python-dotenv==1.0.0
+langchain
+langchain_huggingface

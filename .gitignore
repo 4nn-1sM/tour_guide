@@ -1,0 +1,5 @@
+*.ipynb
+test_api.py
+*.env
+__pycache__
+pytest_cache

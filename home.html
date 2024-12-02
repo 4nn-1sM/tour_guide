@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City Explorer</title>
+    <style>
+        body {
+            background-color: #ffcccc; /* Tonos rojos suaves */
+            font-family: Arial, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #e60000; /* Rojo fuerte */
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        main {
+            padding: 20px;
+            text-align: center;
+        }
+        .map-container {
+            margin: 20px auto;
+            max-width: 800px;
+        }
+        .map-container img {
+            width: 100%;
+            border: 5px solid #e60000;
+            border-radius: 10px;
+        }
+        form {
+            margin-top: 20px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            width: 70%;
+            border: 2px solid #e60000;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #e60000;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #cc0000;
+        }
+        footer {
+            background-color: #e60000;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>City Explorer</h1>
+        <p>Descubre lugares únicos y secretos mejor guardados de tu ciudad</p>
+    </header>
+    <main>
+        <div class="map-container">
+            <img src="https://via.placeholder.com/800x400?text=Mapa+de+la+Ciudad" alt="Mapa de la Ciudad">
+        </div>
+        <form id="explorer-form">
+            <input type="text" id="place" name="place" placeholder="Ingresa el nombre de la ciudad" required>
+            <button type="submit">Explorar</button>
+        </form>
+    </main>
+    <footer>
+        <p>&copy; 2024 City Explorer. Todos los derechos reservados.</p>
+    </footer>
+    <script>
+        const form = document.querySelector('#explorer-form');
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const place = document.getElementById('place').value;
+            const response = await fetch('/generate-response/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ place })
+            });
+            const result = await response.json();
+            console.log(result);
+            if (result.response) {
+                alert(`Recomendaciones: ${result.response}`);
+            } else {
+                alert('Hubo un error procesando tu solicitud.');
+            }
+        });
+    </script>
+</body>
+</html>
