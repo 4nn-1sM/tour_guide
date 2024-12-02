@@ -72,4 +72,4 @@ pytest test_app.py
 --- 
 
 ¡Espero que disfrutes explorando rincones únicos tanto como yo disfruté creando esta aplicación! 🌟
-"""
+
