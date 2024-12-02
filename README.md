@@ -1,18 +1,23 @@
 ![imagen_guia](images/readme_image.png)
+"""
 # 🌍 **Descubre Rincones que Cuentan Historias**  
-**Una app para explorar lugares únicos y experiencias inolvidables.**
+**Transforma tus viajes con experiencias únicas y relatos envolventes.**
 
 ## 🛠️ **Descripción del Proyecto**  
-Esta aplicación web está diseñada para ayudarte a descubrir los secretos mejor guardados de cualquier ciudad. Usando inteligencia artificial, proporciona recomendaciones auténticas e inspiradoras sobre lugares que no suelen aparecer en las guías turísticas tradicionales. Desde pequeñas tiendas familiares hasta arte urbano oculto, ¡esta app te hará sentir como un local en cualquier ciudad que visites!  
+Bienvenido a **Descubre Rincones que Cuentan Historias**, una aplicación diseñada para invitarte a explorar ciudades desde una perspectiva única. Con la ayuda de inteligencia artificial, esta app no solo te sugiere lugares a visitar, sino que los envuelve en relatos inspiradores que capturan el alma de cada rincón. 
+
+Imagina caminar por una plaza histórica, sentir el aroma de una cocina tradicional mezclada con lo moderno, o descubrir arte escondido en calles empedradas... Nuestra misión es que vivas cada destino como si lo experimentaras a través de los ojos de un apasionado narrador local.
+
+Desde pequeños cafés llenos de historias hasta parques donde la naturaleza y el arte convergen, esta aplicación te ayudará a conectar emocionalmente con los lugares que visitas.
 
 ---
 
 ## ✨ **Características**
-- **Recomendaciones únicas:** Explora rincones ocultos y experiencias auténticas.
-- **Historial de búsqueda:** Consulta tus búsquedas pasadas y mantén un registro de tus descubrimientos.
-- **Interfaz intuitiva:** Diseño moderno y funcional inspirado en **Tailwind CSS**.
-- **IA personalizada:** Potenciado por el modelo de Hugging Face \`microsoft/Phi-3.5-mini-instruct\`.
-- **Base de datos MySQL:** Guarda y gestiona el historial de búsquedas.
+- **Relatos inmersivos:** Recibe recomendaciones detalladas y narradas de manera inspiradora sobre los lugares más emblemáticos y escondidos.
+- **Historial de búsquedas:** Accede fácilmente a tus exploraciones pasadas para revivir los recuerdos.
+- **Interfaz intuitiva:** Un diseño fácil y accesible que realza tu experiencia.
+- **IA narrativa personalizada:** Potenciado por el modelo de Hugging Face \`microsoft/Phi-3.5-mini-instruct\` para generar textos que combinan historia, cultura y emoción.
+- **Exploración cultural:** Descubre rincones auténticos que reflejan la esencia única de cada ciudad.
 
 ---
 
@@ -50,25 +55,12 @@ Accede a la app en tu navegador en [http://127.0.0.1:8000](http://127.0.0.1:8000
 
 ## 🖼️ **Vista Previa**
 
+### **Ejemplo de Respuesta**
+**Madrid**  
+_Bienvenido a Madrid, la vibrante capital de España, donde cada calle, plaza y esquina tiene su propia historia para contar..._
+
 ### **Pantalla Principal**
 ![Pantalla Principal](https://via.placeholder.com/800x400.png?text=Captura+de+Pantalla+1)
-
-### **Resultados de Búsqueda**
-![Resultados](https://via.placeholder.com/800x400.png?text=Captura+de+Pantalla+2)
-
----
-
-## 📂 **Estructura del Proyecto**
-
-\`\`\`plaintext
-📦 descubre-rincones
-├── app.py               # Lógica principal de la aplicación.
-├── home.html            # Plantilla HTML con diseño responsivo.
-├── static/              # Archivos estáticos (imágenes, CSS).
-├── .env                 # Configuración de variables de entorno.
-├── requirements.txt     # Dependencias del proyecto.
-└── README.md            # Documentación del proyecto.
-\`\`\`
 
 ---
 
@@ -80,43 +72,7 @@ Este proyecto incluye una suite de tests básicos para asegurar su funcionalidad
 pytest test_app.py
 \`\`\`
 
----
-
-## 🤝 **Contribuciones**
-¡Las contribuciones son bienvenidas! Por favor, sigue estos pasos:  
-1. Haz un fork del repositorio.  
-2. Crea una nueva rama: \`git checkout -b feature/nueva-caracteristica\`.  
-3. Haz tus cambios y realiza un commit: \`git commit -m "Añadida nueva característica"\`.  
-4. Envía tus cambios: \`git push origin feature/nueva-caracteristica\`.  
-5. Abre un Pull Request en GitHub.  
-
----
-
-## 📄 **Licencia**
-Este proyecto está bajo la licencia MIT. Consulta el archivo [LICENSE](LICENSE) para más información.
-
----
-
-## ✨ **Agradecimientos**
-- **Hugging Face** por su potente API de modelos de lenguaje.
-- **Tailwind CSS** por facilitar un diseño moderno y atractivo.
-- A ti, por apoyar este proyecto. ❤️
-
----
-
-## 📫 **Contacto**
-Si tienes preguntas o sugerencias, no dudes en escribirme:  
-📧 **[tu-email@example.com](mailto:tu-email@example.com)**  
-🐦 **[Twitter](https://twitter.com/tuusuario)**  
-🌐 **[Sitio web personal](https://tusitio.com)**
-
 --- 
 
 ¡Espero que disfrutes explorando rincones únicos tanto como yo disfruté creando esta aplicación! 🌟
 """
-
-# Guardar en un archivo README.md
-with open("README.md", "w", encoding="utf-8") as archivo:
-    archivo.write(contenido_readme)
-
-print("README.md generado correctamente.")
